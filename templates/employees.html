@@ -6,87 +6,41 @@
     <table class="table table-striped table-sm">
         <thead>
             <tr>
-                <th scope="col">Employee Number</th>
+                <th scope="col">Emp. No.</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email Address</th>
                 <th scope="col">Phone Number</th>
+                <th scope="col">City</th>
                 <th scope="col">Weather</th>
-                <th scope="col">News</th>
-                <th scope="col">Service</th>
+                <th scope="col">News from City</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
+            {% for emp_key in db %}
             <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-                <td>text</td>
-                <td>text<br>text2</td>
-                <td>text</td>
+                <td>{{emp_key}}</td>
+                <td>{{db[emp_key]["first_name"]}}</td>
+                <td>{{db[emp_key]["last_name"]}}</td>
+                <td>{{db[emp_key]["email"]}}</td>
+                <td>{{db[emp_key]["phone_number"]}}</td>
+                <td>{{db[emp_key]["city"]}}</td>
+                <td>{{db[emp_key]["weather"][3]}}</td>
+                <td>
+                    <a href="{{db[emp_key]["news"][2]}}" target="_blank">
+                        {{db[emp_key]["news"][0]}}
+                    </a>
+                    <br>
+                    {{db[emp_key]["news"][1]}}
+                </td>
+                <td>
+                    <a href="/remove_employee/{{emp_key}}">
+                        <button type="button" class="btn btn-danger" style="margin: 5px;">Remove</button>
+                    </a>
+                </td>
             </tr>
-            <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-                <td>text</td>
-                <td>text<br>text2</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-                <td>text</td>
-                <td>text<br>text2</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-                <td>text</td>
-                <td>text<br>text2</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-                <td>text</td>
-                <td>text<br>text2</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-                <td>text</td>
-                <td>text<br>text2</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-                <td>text</td>
-                <td>text<br>text2</td>
-                <td>text</td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
