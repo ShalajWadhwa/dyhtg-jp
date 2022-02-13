@@ -5,14 +5,16 @@ import json
 from backend import employee
 from backend.coords_api_func import get_coords
 from backend.keys import news_api_key, weather_api_key
+from dashboard import fetch_warnings
 
 app = Flask(__name__)
 
-# api_refresh.refresh(today = datetime.date.today(), news_api_key, weather_api_key)
+api_refresh.refresh(today = datetime.date.today(), news_api_key = news_api_key, weather_api_key = weather_api_key)
 
 @app.route("/", methods=["GET", "POST"])
 def dashboard():
-    return render_template("dashboard.html", title="Dashboard", dashboard="active")
+    warnings = fetch_warnings()
+    return render_template("dashboard.html", title="Dashboard", dashboard="active", warnings = warnings)
 
 
 @app.route("/employees", methods=["GET", "POST"])
@@ -42,7 +44,6 @@ def remove_emp(employee_num):
 #     if request.method == "POST":
 #         db = employee.user_Search(request.form.get(request.form.get("value")))
 #     return render_template("employees.html", title="Employees", emp="active", db = db)
-
 
 
 if __name__ == "__main__":
