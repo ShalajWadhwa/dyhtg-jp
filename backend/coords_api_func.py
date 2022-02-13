@@ -8,3 +8,8 @@ def get_coords(postCode):
     return location.latitude, location.longitude
 
 lat, long = get_coords("G12 8RR")
+
+#remove below
+# print(lat)
+# print()
+# print(long)

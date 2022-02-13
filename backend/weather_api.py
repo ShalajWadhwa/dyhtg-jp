@@ -1,6 +1,6 @@
 import requests
 
-def get_all_info(lat, lon):
+def get_weather(lat, lon):
         params = {"apiid" : "32bdf1ac7b5820c712199642efd9ee76",
                 "units" : "metric"}
 
@@ -15,4 +15,4 @@ def get_all_info(lat, lon):
 
         return temp, feels_like, wind, weather
 
-get_all_info(lat, lon)
+#get_all_info(lat, lon)
