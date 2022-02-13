@@ -4,8 +4,11 @@ import datetime
 import json
 from backend import employee
 from backend.coords_api_func import get_coords
+from backend.keys import news_api_key, weather_api_key
+
 app = Flask(__name__)
 
+# api_refresh.refresh(today = datetime.date.today(), news_api_key, weather_api_key)
 
 @app.route("/", methods=["GET", "POST"])
 def dashboard():
@@ -15,7 +18,7 @@ def dashboard():
 @app.route("/employees", methods=["GET", "POST"])
 def emp():
     if request.method == "POST":
-        api_refresh.refresh(today = datetime.date.today())
+        api_refresh.refresh(today = datetime.date.today(), news_api_key=news_api_key, weather_api_key=weather_api_key)
     with open("database/db.json", "r") as f:
         db = json.load(f)
     return render_template("employees.html", title="Employees", emp="active", db = db)
@@ -33,6 +36,13 @@ def add_emp():
 def remove_emp(employee_num):
     employee.user_Delete(int(employee_num))
     return redirect("/employees")
+
+# @app.route("/search_employee", methods=["GET", "POST"])
+# def search_emp():
+#     if request.method == "POST":
+#         db = employee.user_Search(request.form.get(request.form.get("value")))
+#     return render_template("employees.html", title="Employees", emp="active", db = db)
+
 
 
 if __name__ == "__main__":

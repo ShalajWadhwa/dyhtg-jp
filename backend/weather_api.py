@@ -1,7 +1,7 @@
 import requests
 
-def get_weather(lat, lon):
-        params = {"apiid" : "32bdf1ac7b5820c712199642efd9ee76",
+def get_weather(lat, lon, weather_api_key):
+        params = {"apiid" : weather_api_key,
                 "units" : "metric"}
 
         url = "https://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&appid=32bdf1ac7b5820c712199642efd9ee76".format(lat, lon)

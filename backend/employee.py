@@ -33,15 +33,15 @@ def user_Delete(employee_number):
         user_Library = json.dump(user_Library, openfile)
 
 
-def user_Search(search_input):
-    with open('database/db.json', 'r') as openfile:
-        user_Library = json.load(openfile)
+# def user_Search(search_input):
+#     with open('database/db.json', 'r') as openfile:
+#         user_Library = json.load(openfile)
 
-    for employee in user_Library:
-        if search_input in user_Library[employee].values():
-            return {employee : user_Library[employee]}
-        else:
-            return "Employee Not Found"
+#     for employee in user_Library:
+#         if search_input in user_Library[employee].values():
+#             return {employee : user_Library[employee]}
+#         else:
+#             return "Employee Not Found"
 
 
 # Filler

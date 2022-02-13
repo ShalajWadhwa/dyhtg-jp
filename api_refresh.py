@@ -9,7 +9,7 @@ import json
 
 # today = datetime.date.today() #add to file where refresh is called
 
-def refresh(today):
+def refresh(today, news_api_key, weather_api_key):
     #read in data file
     with open('database/db.json', 'r') as openfile:
         data = json.load(openfile)
@@ -19,8 +19,8 @@ def refresh(today):
         lat = data[employee]['lat']
         long = data[employee]['long']
         weat_news = ()
-        weat_news += (weather.get_weather(lat, long),)
-        weat_news += (news.get_news(region, today),)
+        weat_news += (weather.get_weather(lat, long, weather_api_key),)
+        weat_news += (news.get_news(region, today, news_api_key),)
         data[employee]['weather'] = weat_news[0]
         data[employee]['news'] = weat_news[1]
 
