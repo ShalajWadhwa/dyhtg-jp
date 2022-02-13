@@ -29,10 +29,3 @@ def get_news(region, date):
     else:
         new_date = date - datetime.timedelta(days=1)
         return get_news(region, new_date)
-
-# title, description, link = get_news("Glasgow", today)
-# print(title)
-# print()
-# print(description)
-# print()
-# print(link)
