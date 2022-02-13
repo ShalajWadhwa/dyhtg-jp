@@ -4,10 +4,12 @@ from backend import weather_api as weather
 
 import datetime
 import json
+import matplotlib.pyplot as plt
 
 #pip install newsapi-python 
+#pip install matplotlib
 
-# today = datetime.date.today() #add to file where refresh is called
+#today = datetime.date.today() #add to file where refresh is called
 
 def weather_warn():
     #read in data file
@@ -15,11 +17,11 @@ def weather_warn():
         data = json.load(openfile)
     warning_dict = {}
     num = 1
-    warning_words = ["snow", "rain", "fog", "hail", "clouds"]
+    warning_words = ["snow", "rain", "fog", "hail"]
     for employee in data:
         lat = data[employee]['lat']
         long = data[employee]['long']
-        descrBits = weather.get_weather(lat, long)[3].split()
+        descrBits = data[employee]['weather'][3].split()
     #print(descrBits)    
         for warning in warning_words:
             if warning in descrBits:
@@ -36,18 +38,20 @@ def weather_warn():
     with open('database/weather_warnings.json', 'w') as openfile:
         json.dump(warning_dict, openfile)
 
+def weather_graph():
+    #read in data file
+    with open('database/db.json', 'r') as openfile:
+        data = json.load(openfile)
 
-# def weather_news():
-#     #read in data file
-#     with open('database/db.json', 'r') as openfile:
-#         data = json.load(openfile)
-
-# def weather_graph():
-#     #read in data file
-#     with open('database/db.json', 'r') as openfile:
-#         data = json.load(openfile)
-
-#     for employee in data:
-#         temp = data[employee]['weather'][0]
-
-weather_warn()
+    city_list = []
+    temp_list = []
+    for employee in data:
+        region = data[employee]['city']
+        if region not in city_list:
+            city_list.append(region)
+            temp = int(data[employee]['weather'][0])
+            temp_list.append(temp)
+    plt.bar(city_list, temp_list)
+    plt.xlabel("Cities")
+    plt.ylabel("Temperature")
+    plt.savefig('database/temp_cities.png')
