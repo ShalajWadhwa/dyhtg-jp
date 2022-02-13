@@ -9,7 +9,7 @@ import json
 
 # today = datetime.date.today() #add to file where refresh is called
 
-def refresh():
+def refresh(today):
     #read in data file
     with open('database/db.json', 'r') as openfile:
         data = json.load(openfile)

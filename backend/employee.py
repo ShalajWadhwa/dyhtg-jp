@@ -1,8 +1,8 @@
 import json
-from coords_api_func import get_coords
+# from coords_api_func import get_coords
 
-
-def user_Create(user_EmployeeNumber, firstname, lastname, email, phone_number, city, post_code, weather, news):
+# func needs to be get_coords from coords_api_func
+def user_Create(func, user_EmployeeNumber, firstname, lastname, email, phone_number, city, post_code, weather, news):
     user_NewUser = {user_EmployeeNumber:  {}}
     user_NewUser[user_EmployeeNumber]["first_name"] = firstname
     user_NewUser[user_EmployeeNumber]["last_name"] = lastname
@@ -13,7 +13,7 @@ def user_Create(user_EmployeeNumber, firstname, lastname, email, phone_number, c
     user_NewUser[user_EmployeeNumber]["weather"] = weather
     user_NewUser[user_EmployeeNumber]["news"] = news
 
-    lat, long = get_coords(post_code) # Location API
+    lat, long = func(post_code) # Location API
 
     user_NewUser[user_EmployeeNumber]["lat"] = lat
     user_NewUser[user_EmployeeNumber]["long"] = long
@@ -28,14 +28,9 @@ def user_Create(user_EmployeeNumber, firstname, lastname, email, phone_number, c
 def user_Delete(employee_number):
     with open('database/db.json', 'r') as openfile:
         user_Library = json.load(openfile)
-
-    if employee_number in user_Library.keys():
-        del user_Library[employee_number]
-        with open('database/db.json', 'w') as openfile:
-            user_Library = json.dump(user_Library, openfile)
-        return "Employee Removed"
-    else:
-        return "Employee Not Found"
+    del user_Library[str(employee_number)]
+    with open('database/db.json', 'w') as openfile:
+        user_Library = json.dump(user_Library, openfile)
 
 
 def user_Search(search_input):
@@ -54,6 +49,8 @@ def user_Search(search_input):
 # import time
 # for emp in range(10):
 #     response = requests.get("https://random-data-api.com/api/users/random_user").json()
-#     user_Create(user_EmployeeNumber=response["id"], firstname=response["first_name"], lastname=response["last_name"],
+#     user_Create(get_coords, user_EmployeeNumber=response["id"], firstname=response["first_name"], lastname=response["last_name"],
 #                 email=response["email"], phone_number=response["phone_number"], city="Glasgow", post_code="G12 8QQ", weather=None, news=None)
 #     time.sleep(0.5)
+
+# print("DB Filled")

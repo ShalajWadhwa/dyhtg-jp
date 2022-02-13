@@ -2,6 +2,38 @@
 
 {% block body %}
 
-
+<form class="row g-3" method="POST">
+    <div class="col-md-4">
+        <label class="form-label">Employee Number</label>
+        <input type="text" class="form-control" placeholder="Enter Employee Number" name="emp_no">
+      </div>
+    <div class="col-md-4">
+        <label class="form-label">First</label>
+        <input type="text" class="form-control" placeholder="Enter First Name" name="first">
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Last</label>
+        <input type="text" class="form-control" placeholder="Enter Last Name" name="last">
+      </div>
+    <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Email" name="email">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Phone Number</label>
+        <input type="text" class="form-control" placeholder="enter Phone Number" name="phone_number">
+    </div>
+    <div class="col-md-8">
+        <label class="form-label">City</label>
+        <input type="text" class="form-control" id="inputCity" placeholder="Enter City" name="city">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Post Code</label>
+        <input type="text" class="form-control" id="inputZip" placeholder="Enter Post Code" name="post_code">
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Add Employee</button>
+    </div>
+</form>
 
 {% endblock body %}
