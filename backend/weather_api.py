@@ -14,5 +14,3 @@ def get_weather(lat, lon):
         weather = (response['weather'][0]['description'])
 
         return temp, feels_like, wind, weather
-
-#get_all_info(lat, lon)
