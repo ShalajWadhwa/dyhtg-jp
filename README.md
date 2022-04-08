@@ -1,2 +1,2 @@
-# DYHTG Hackathon 2022
-Glasgow University Tech Society Hackathon - JP Morgan Challange
+# DYHTG Hackathon
+Glasgow University Tech Society Hackathon (Feb, 2022)- JP Morgan Challange
